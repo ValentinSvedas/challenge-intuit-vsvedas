@@ -1,0 +1,15 @@
+/Users/valentinsvedas/Desktop/EvaluacionIntuit/back-end/src/main/java/com/evaluacion/intuit/EvaluacionIntuitApplication.java
+/Users/valentinsvedas/Desktop/EvaluacionIntuit/back-end/src/main/java/com/evaluacion/intuit/client/infrastructure/input/advice/ErrorResponse.java
+/Users/valentinsvedas/Desktop/EvaluacionIntuit/back-end/src/main/java/com/evaluacion/intuit/client/application/exceptions/OperationNotValidException.java
+/Users/valentinsvedas/Desktop/EvaluacionIntuit/back-end/src/main/java/com/evaluacion/intuit/client/domain/businessobject/ClientBo.java
+/Users/valentinsvedas/Desktop/EvaluacionIntuit/back-end/src/main/java/com/evaluacion/intuit/client/application/ClientService.java
+/Users/valentinsvedas/Desktop/EvaluacionIntuit/back-end/src/main/java/com/evaluacion/intuit/client/infrastructure/input/ClientController.java
+/Users/valentinsvedas/Desktop/EvaluacionIntuit/back-end/src/main/java/com/evaluacion/intuit/client/infrastructure/output/persistence/ClientRepository.java
+/Users/valentinsvedas/Desktop/EvaluacionIntuit/back-end/src/main/java/com/evaluacion/intuit/client/application/validations/ClientValidator.java
+/Users/valentinsvedas/Desktop/EvaluacionIntuit/back-end/src/main/java/com/evaluacion/intuit/client/domain/entity/Client.java
+/Users/valentinsvedas/Desktop/EvaluacionIntuit/back-end/src/main/java/com/evaluacion/intuit/client/application/ClientServiceImpl.java
+/Users/valentinsvedas/Desktop/EvaluacionIntuit/back-end/src/main/java/com/evaluacion/intuit/client/infrastructure/input/mappers/ClientMapper.java
+/Users/valentinsvedas/Desktop/EvaluacionIntuit/back-end/src/main/java/com/evaluacion/intuit/client/application/exceptions/NotFoundException.java
+/Users/valentinsvedas/Desktop/EvaluacionIntuit/back-end/src/main/java/com/evaluacion/intuit/client/infrastructure/input/advice/GlobalExceptionHandler.java
+/Users/valentinsvedas/Desktop/EvaluacionIntuit/back-end/src/main/java/com/evaluacion/intuit/client/infrastructure/input/request/ClientRequest.java
+/Users/valentinsvedas/Desktop/EvaluacionIntuit/back-end/src/main/java/com/evaluacion/intuit/client/infrastructure/input/response/ClientResponse.java

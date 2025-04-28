@@ -1,0 +1,59 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-client
+      comment: Create table client
+      author: vsvedas
+      changes:
+        - createTable:
+            tableName: client
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: PK_client_id
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: varchar(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: last_name
+                  type: varchar(255)
+              - column:
+                  name: birth_date
+                  type: date
+              - column:
+                  constraints:
+                    nullable: false
+                  name: email
+                  type: varchar
+              - column:
+                  constraints:
+                    nullable: false
+                  name: cuit
+                  type: varchar(11)
+              - column:
+                  name: number_phone
+                  type: varchar(255)
+              - column:
+                  name: address
+                  type: varchar(255)
+        - sql:
+            sql: |-
+              INSERT INTO client (name, last_name, birth_date, email, cuit) VALUES ('Juan', 'Valdez', '2002-09-20', 'example@gmail.com', '20400833173');
+              INSERT INTO client (name, last_name, birth_date, email, cuit) VALUES ('Roman Tomas', 'Diaz', '2002-09-20', 'example@gmail.com', '20415839201');
+              INSERT INTO client (name, last_name, birth_date, email, cuit) VALUES ('Luis Gabriel', 'Gomez', '2002-09-20', 'example@gmail.com', '23048374923');
+              INSERT INTO client (name, last_name, birth_date, email, cuit) VALUES ('Veronica', 'Islas', '2002-09-20', 'example@gmail.com', '21978564522');
+              INSERT INTO client (name, last_name, birth_date, email, cuit) VALUES ('Pamela', 'Lopez', '2002-09-20', 'example@gmail.com', '28495839293');
+              INSERT INTO client (name, last_name, birth_date, email, cuit) VALUES ('Fernando Agustin', 'Rodrigez', '2002-09-20', 'example@gmail.com', '28394819203');
+              INSERT INTO client (name, last_name, birth_date, email, cuit) VALUES ('Martín Ricardo', 'Fernandes', '2002-09-20', 'example@gmail.com', '32918394021');
+              INSERT INTO client (name, last_name, birth_date, email, cuit) VALUES ('Santiago', 'Pereyra', '2002-09-20', 'example@gmail.com', '20394857201');
+              INSERT INTO client (name, last_name, birth_date, email, cuit) VALUES ('María José', 'Roldán', '2002-09-20', 'example@gmail.com', '27394810293');
+              INSERT INTO client (name, last_name, birth_date, email, cuit) VALUES ('Carlos Alberto', 'Méndez', '2002-09-20', 'example@gmail.com', '30928475920');
+              INSERT INTO client (name, last_name, birth_date, email, cuit) VALUES ('Luciana', 'Campos', '2002-09-20', 'example@gmail.com', '28937410283');
+              INSERT INTO client (name, last_name, birth_date, email, cuit) VALUES ('Matías Emanuel', 'Sosa', '2002-09-20', 'example@gmail.com', '24301928475');
