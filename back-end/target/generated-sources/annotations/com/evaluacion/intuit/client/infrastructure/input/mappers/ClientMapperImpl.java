@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-04-28T10:48:51-0300",
+    date = "2025-05-03T13:31:49-0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 18.0.2 (Amazon.com Inc.)"
 )
 @Component
@@ -28,10 +28,19 @@ public class ClientMapperImpl implements ClientMapper {
         LocalDate birthDate = null;
         String email = null;
         String cuit = null;
-        String numberPhone = null;
+        String phoneNumber = null;
         String address = null;
 
-        ClientResponse clientResponse = new ClientResponse( id, name, lastName, birthDate, email, cuit, numberPhone, address );
+        id = clientBo.getId();
+        name = clientBo.getName();
+        lastName = clientBo.getLastName();
+        birthDate = clientBo.getBirthDate();
+        email = clientBo.getEmail();
+        cuit = clientBo.getCuit();
+        phoneNumber = clientBo.getPhoneNumber();
+        address = clientBo.getAddress();
+
+        ClientResponse clientResponse = new ClientResponse( id, name, lastName, birthDate, email, cuit, phoneNumber, address );
 
         return clientResponse;
     }

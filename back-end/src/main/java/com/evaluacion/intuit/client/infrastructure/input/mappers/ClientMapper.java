@@ -3,6 +3,7 @@ package com.evaluacion.intuit.client.infrastructure.input.mappers;
 import com.evaluacion.intuit.client.domain.businessobject.ClientBo;
 import com.evaluacion.intuit.client.infrastructure.input.response.ClientResponse;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 

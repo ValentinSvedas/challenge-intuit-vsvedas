@@ -38,7 +38,7 @@ databaseChangeLog:
                   name: cuit
                   type: varchar(11)
               - column:
-                  name: number_phone
+                  name: phone_number
                   type: varchar(255)
               - column:
                   name: address

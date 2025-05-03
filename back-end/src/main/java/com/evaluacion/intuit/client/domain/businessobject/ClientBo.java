@@ -12,14 +12,14 @@ import java.util.Objects;
 @Builder
 @AllArgsConstructor
 public class ClientBo {
-    private final Integer id;
-    private final String name;
-    private final String lastName;
-    private final LocalDate birthDate;
-    private final String email;
-    private final String cuit;
-    private final String phoneNumber;
-    private final String address;
+    Integer id;
+    String name;
+    String lastName;
+    LocalDate birthDate;
+    String email;
+    String cuit;
+    String phoneNumber;
+    String address;
 
     public ClientBo(Client client) {
         this.id = Objects.isNull(client.getId()) ? null : client.getId();
@@ -28,7 +28,7 @@ public class ClientBo {
         this.birthDate = client.getBirthDate();
         this.email = client.getEmail();
         this.cuit = client.getCuit();
-        this.phoneNumber = client.getNumberPhone();
+        this.phoneNumber = client.getPhoneNumber();
         this.address = client.getAddress();
     }
 

@@ -7,9 +7,9 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface ClientService {
-    public List<ClientBo> findAll();
-    public ClientBo findById(Integer clientId);
-    public Page<ClientBo> findByName(String clientName, Pageable page);
-    public ClientBo create(ClientBo clientBo);
-    public ClientBo update(Integer id, ClientBo clientBo);
+    Page<ClientBo> findAll(Pageable pageable);
+    ClientBo findById(Integer clientId);
+    Page<ClientBo> findByName(String clientName, Pageable page);
+    ClientBo create(ClientBo clientBo);
+    ClientBo update(Integer id, ClientBo clientBo);
 }

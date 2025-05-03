@@ -42,22 +42,26 @@ class ClientServiceImplTest {
         validClientBo = new ClientBo(1, "Lucas", "Rodriguez", LocalDate.of(1990, 10, 1),"example@gmail.com",
                 "20420833173", "2494496847", "Avenida Callao 222");
 
-        validClientEntity = new Client(validClientBo);
+        validClientEntity = validClientBo.toEntity();
     }
 
     @Test
     void findAll_ShouldReturnAllClients() {
         // Arrange
-        when(clientRepository.findAll()).thenReturn(List.of(validClientEntity));
+        Pageable pageable = PageRequest.of(0, 10);
+        List<Client> mockEntities = List.of(validClientEntity);
+        Page<Client> mockPage = new PageImpl<>(mockEntities, pageable, 1);
+
+        when(clientRepository.findAll(any(Pageable.class))).thenReturn(mockPage);
 
         // Act
-        List<ClientBo> result = clientService.findAll();
+        Page<ClientBo> result = clientService.findAll(pageable);
 
         // Assert
         assertNotNull(result);
-        assertEquals(1, result.size());
-        assertEquals(validClientBo.getId(), result.get(0).getId());
-        verify(clientRepository, times(1)).findAll();
+        assertEquals(1, result.getTotalElements());
+        assertEquals(validClientBo.getId(), result.getContent().get(0).getId());
+        verify(clientRepository, times(1)).findAll(pageable);
     }
 
     @Test
@@ -143,7 +147,6 @@ class ClientServiceImplTest {
         // Arrange
         when(clientRepository.findById(1)).thenReturn(Optional.of(validClientEntity));
         when(clientRepository.save(any(Client.class))).thenReturn(validClientEntity);
-        when(clientRepository.findByCuit(validClientBo.getCuit())).thenReturn(Optional.empty());
 
         // Act
         ClientBo result = clientService.update(1, validClientBo);
@@ -167,14 +170,15 @@ class ClientServiceImplTest {
     @Test
     void update_WithExistingCuitForDifferentClient_ShouldThrowOperationNotValidException() {
         // Arrange
-        Client existingClientWithSameCuit = new Client();
-        existingClientWithSameCuit.setId(2);
-        existingClientWithSameCuit.setCuit(validClientBo.getCuit());
+        ClientBo existingClientWithSameCuit = ClientBo.builder().id(2).cuit(validClientBo.getCuit()).build();
+        var client = new Client();
+        client.setId(2);
+        client.setCuit(existingClientWithSameCuit.getCuit());
 
-        when(clientRepository.findByCuit(validClientBo.getCuit())).thenReturn(Optional.of(existingClientWithSameCuit));
+        when(clientRepository.findById(existingClientWithSameCuit.getId())).thenReturn(Optional.of(client));
 
         // Act & Assert
-        assertThrows(OperationNotValidException.class, () -> clientService.update(1, validClientBo));
+        assertThrows(OperationNotValidException.class, () -> clientService.update(2, existingClientWithSameCuit));
         verify(clientRepository, never()).save(any(Client.class));
     }
 }

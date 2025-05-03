@@ -9,6 +9,7 @@ import com.evaluacion.intuit.client.infrastructure.output.persistence.ClientRepo
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,11 +25,18 @@ public class ClientServiceImpl implements ClientService {
     private final ClientRepository clientRepository;
 
     @Override
-    public List<ClientBo> findAll() {
-        return clientRepository
-                .findAll().stream()
+    public Page<ClientBo> findAll(Pageable pageable) {
+        Page<Client> entityPage = clientRepository.findAll(pageable);
+        List<ClientBo> dtos = entityPage.getContent()
+                .stream()
                 .map(ClientBo::new)
                 .toList();
+
+        return new PageImpl<>(
+                dtos,
+                entityPage.getPageable(),
+                entityPage.getTotalElements()
+        );
     }
 
     @Override

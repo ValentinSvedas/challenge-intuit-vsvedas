@@ -11,21 +11,8 @@ public record ClientResponse(
         LocalDate birthDate,
         String email,
         String cuit,
-        String numberPhone,
+        String phoneNumber,
         String address
 ) {
-
-    public ClientResponse fromEntity(Client client) {
-        return new ClientResponse(
-                client.getId(),
-                client.getName(),
-                client.getLastName(),
-                client.getBirthDate(),
-                client.getEmail(),
-                client.getCuit(),
-                client.getNumberPhone(),
-                client.getAddress()
-        );
-    }
 
 }

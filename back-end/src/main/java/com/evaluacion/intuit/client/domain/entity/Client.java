@@ -1,6 +1,5 @@
 package com.evaluacion.intuit.client.domain.entity;
 
-import com.evaluacion.intuit.client.domain.businessobject.ClientBo;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Entity
 @Table(name = "client")
@@ -38,8 +36,8 @@ public class Client {
     @Column(name = "cuit")
     private String cuit;
 
-    @Column(name = "number_phone")
-    private String numberPhone;
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
     @Column(name = "address")
     private String address;

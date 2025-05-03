@@ -1,15 +1,16 @@
 package com.evaluacion.intuit.client.infrastructure.input;
 
 import com.evaluacion.intuit.client.application.ClientService;
+import com.evaluacion.intuit.client.domain.businessobject.ClientBo;
 import com.evaluacion.intuit.client.infrastructure.input.mappers.ClientMapper;
 import com.evaluacion.intuit.client.infrastructure.input.request.ClientRequest;
 import com.evaluacion.intuit.client.infrastructure.input.response.ClientResponse;
+import com.evaluacion.intuit.client.infrastructure.input.response.ReponseDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,9 +25,14 @@ public class ClientController {
     private final ClientMapper clientMapper;
 
     @GetMapping
-    public ResponseEntity<List<ClientResponse>> getAll() {
-        var allClients = clientService.findAll();
-        return ResponseEntity.ok(clientMapper.toResponseList(allClients));
+    public ResponseEntity<Page<ClientResponse>> getAllPage(Pageable pageable) {
+        var pagedClients = clientService.findAll(pageable);
+        List<ClientBo> boList = pagedClients.getContent();
+        List<ClientResponse> responseList = clientMapper.toResponseList(boList);
+
+        return ResponseEntity.ok(
+                new PageImpl<>(responseList, pagedClients.getPageable(), pagedClients.getTotalElements())
+        );
     }
 
     @GetMapping("/{id}")
@@ -45,18 +51,18 @@ public class ClientController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> create(@Valid @RequestBody ClientRequest clientRequest) {
+    public ResponseEntity<ReponseDto> create(@Valid @RequestBody ClientRequest clientRequest) {
         var clientBo = clientRequest.toBo();
-        clientService.create(clientBo);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        var clientCreated = clientService.create(clientBo);
+        return ResponseEntity.ok(new ReponseDto(clientCreated.getId()));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(
+    public ResponseEntity<ReponseDto> update(
             @PathVariable("id") Integer id,
             @Valid @RequestBody ClientRequest clientRequest) {
         var clientBo = clientRequest.toBo();
         clientService.update(id, clientBo);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(new ReponseDto(id));
     }
 }
